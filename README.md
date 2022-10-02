@@ -68,9 +68,9 @@ The UI node is a super easy node because it is used only to set the ROS paramete
 
 Essentially this is the pseudocoude behind my idea:
 
-```
 
 ### Modality 1 node (final_assignment package)
+```
 
 In the modality 1 the robot has to reach by itself a goal sent by the user in the UI node.
 
@@ -81,7 +81,6 @@ client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
 ```
 
 Thanks to this [wiki.ros page](http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Simple%20Action%20Client%20%28Python%29) I could develop a good action with its functions ```done_cb()```, ```active_cb```, ```feedback_cb```. 
-If you want to get deep into ROSaction check out this video:
 
 Then, we have the function ```ActionClient()```, __the function starts the communication with wait_for_server(). The action client and server communicate over a set of topics, described in the actionlib protocol.  The action name describes the namespace naining these topics, and the action specification message describes what messages should be passed along these topics. __
 
