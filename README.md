@@ -77,8 +77,6 @@ Essentially this is the pseudocoude behind my idea:
 
 
 ### Modality 1 Node 
-```
-
 In the modality 1 the robot has to reach by itself a goal sent by the user in the UI node.
 
 The UI node is the most interesting one because is based on ROSAction, all the magic takes place with the line:
