@@ -94,7 +94,7 @@ The program has a control which permits to put the robot in idle state in the ca
 
 Here's a screenshot of the xterm console:
 <p align="center">
-<img src="Block_Diagram.png" width="470" height="425">
+<img src="" width="470" height="325">
 </p>
 
 ### Modality 2 Node 
@@ -114,7 +114,7 @@ Anyway I realaborated the code by using the paramater ```active``` because we wa
 
 Here's a screenshot of the xterm console:
 <p align="center">
-<img src="Block_Diagram.png" width="470" height="425">
+<img src="Modality2.png" width="470" height="325">
 </p>
 
 ### Modality 3 Node
@@ -146,7 +146,7 @@ As you can see, we're passing a dictionary to the function. The idea is that we 
 
 Here's a screenshot of the xterm console:
 <p align="center">
-<img src="Block_Diagram.png" width="470" height="425">
+<img src="Modality3.png" width="470" height="325">
 </p>
 
 ## Conclusion and possible improvements
@@ -158,7 +158,7 @@ rosrun rqt_graph rqt_graph
 
 the relationship between all the nodes:
 <p align="center">
-<img src="Block_Diagram.png" width="470" height="425">
+<img src="rosgraph.png" width="970" height="425">
 </p>
 
 
