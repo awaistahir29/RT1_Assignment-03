@@ -66,7 +66,7 @@ The user through the console of the UI node will decide the modality to run, aft
 _Here I will explain each node code and tasks, to have a deeper description of the code, check the comments inside of it._
 __DISCLAIMER__: here I will explain the nodes that I developed by myself, so please for more infos about the other nodes check the ROS wiki.
 
-### UI node (final_assignment package)
+### UI Node 
 
 The UI node is a super easy node because it is used only to set the ROS parameter s travelling through the nodes. The most important one is the integer ```active``` which is the one dedicated to the modality of the robot. The other two are the desired positions which are useful only for the first modality. 
 
