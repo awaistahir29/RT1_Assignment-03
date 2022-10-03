@@ -71,6 +71,9 @@ __DISCLAIMER__: here I will explain the nodes that I developed by myself, so ple
 The UI node is a super easy node because it is used only to set the ROS parameter s travelling through the nodes. The most important one is the integer ```active``` which is the one dedicated to the modality of the robot. The other two are the desired positions which are useful only for the first modality. 
 
 Essentially this is the pseudocoude behind my idea:
+<p align="center">
+<img src="UserInterface.png" width="470" height="325">
+</p>
 
 
 ### Modality 1 Node 
