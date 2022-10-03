@@ -53,7 +53,11 @@ Logic behind the code
 To satisfy the requests I decided to code 4 different nodes inside the package, the simulation is managed by the simulation which was provided by the professor, essentially __you have to install the slam_gmapping package.__ Here's the idea behind the communication of the nodes:
 As you can see it's an easy idea, but the implementation is not that easy! Anyway I will go through everything.
 
-_Briefly description_
+<p align="center">
+<img src="" width="470" height="425">
+</p>
+
+_Brief Description_
 
 The user through the console of the UI node will decide the modality to run, after that the robot will start it's modality and will show on the consoles of the modalities the result of the task, wheter it was okay or if something is going wrong. Anyway, the most important part is to understand the usage of the modalities.
 
