@@ -73,7 +73,7 @@ The UI node is a super easy node because it is used only to set the ROS paramete
 Essentially this is the pseudocoude behind my idea:
 
 
-### Modality 1 node (final_assignment package)
+### Modality 1 Node 
 ```
 
 In the modality 1 the robot has to reach by itself a goal sent by the user in the UI node.
@@ -93,8 +93,11 @@ The ```main()``` function takes the aim of the modality. First of all it loops, 
 The program has a control which permits to put the robot in idle state in the case the robot itself cannot reach a position (for example out of the maze). 
 
 Here's a screenshot of the xterm console:
+<p align="center">
+<img src="Block_Diagram.png" width="470" height="425">
+</p>
 
-### Modality 2 node (final_assignment package)
+### Modality 2 Node 
 
 __The second modality is the one dedicate to the movement of the robot using the keyboard, I decided to simply use the following control table:__
 
@@ -110,8 +113,11 @@ The logic of the code is really simple, because I decided to use the already exi
 Anyway I realaborated the code by using the paramater ```active``` because we want this modality only when the user asks for it, everything else is the same as in the package teleop_twist_keyboard.
 
 Here's a screenshot of the xterm console:
+<p align="center">
+<img src="Block_Diagram.png" width="470" height="425">
+</p>
 
-### Modality 3 node (final_assignment package)
+### Modality 3 Node
 
 __The modality 3 has the same aim of the modality 2, but it asks for an assisting stop when the robot is too close to a wall.__
 
@@ -139,6 +145,9 @@ def pop_it(dictionary):
 As you can see, we're passing a dictionary to the function. The idea is that we will pass a copy of the original ```moveBindings``` dictionary, because we don't want the original informations to be lost when we're away from a wall! This is only the real difference from the other modality.
 
 Here's a screenshot of the xterm console:
+<p align="center">
+<img src="Block_Diagram.png" width="470" height="425">
+</p>
 
 ## Conclusion and possible improvements
 
@@ -148,6 +157,9 @@ rosrun rqt_graph rqt_graph
 ```
 
 the relationship between all the nodes:
+<p align="center">
+<img src="Block_Diagram.png" width="470" height="425">
+</p>
 
 
 __The possible improvements that can be done are:__
