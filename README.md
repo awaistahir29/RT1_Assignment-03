@@ -93,9 +93,7 @@ The ```main()``` function takes the aim of the modality. First of all it loops, 
 The program has a control which permits to put the robot in idle state in the case the robot itself cannot reach a position (for example out of the maze). 
 
 Here's a screenshot of the xterm console:
-<p align="center">
-<img src="" width="470" height="325">
-</p>
+
 
 ### Modality 2 Node 
 
