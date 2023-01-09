@@ -18,3 +18,23 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+User Interface Module
+=====================
+.. automodule:: scripts.UI
+   :members:
+   
+Modality1 Module
+=====================
+.. automodule:: scripts.modality1
+   :members:
+  
+Modality2 Module 
+=====================
+.. automodule:: scripts.modality2
+   :members:
+  
+Modality3 Module 
+=====================
+.. automodule:: scripts.modality3
+   :members:

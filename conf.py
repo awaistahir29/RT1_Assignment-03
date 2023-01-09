@@ -12,7 +12,8 @@
 #
 import os
 import subprocess
-import syssys.path.insert(0, os.path.abspath('.'))
+import sys
+sys.path.insert(0, os.path.abspath('.'))
 
 subprocess.call('doxygen Doxyfile.in', shell=True)
 
@@ -33,6 +34,18 @@ release = '1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+'sphinx.ext.autodoc',
+'sphinx.ext.doctest',
+'sphinx.ext.intersphinx',
+'sphinx.ext.todo',
+'sphinx.ext.coverage',
+'sphinx.ext.mathjax',
+'sphinx.ext.ifconfig',
+'sphinx.ext.viewcode',
+'sphinx.ext.githubpages',
+"sphinx.ext.napoleon",
+'sphinx.ext.inheritance_diagram',
+'breathe'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -56,9 +69,40 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+highlight_language = 'c++'
+source_suffix = '.rst'
+master_doc = 'index'
+html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# --Extension configuration -------------------------------------------------
+
+# --Options for intersphinx extension ---------------------------------------
+
+# Example configuration for intersphinx: refer to the Python standard library.
+
+intersphinx_mapping = {'https://docs.python.org/': None}
+
+# --Options for todo extension ----------------------------------------------
+
+# If true, `todo` and `todoList` produce output, else they produce nothing.
+
+todo_include_todos = True
+
+# --Options for breathe
+
+breathe_projects = {"turtlesim_controller": "_build/xml/"}
+
+breathe_default_project = "turtlesim_controller"
+
+breathe_default_members = ('members', 'undoc-members')
+
+
+
+
+
+

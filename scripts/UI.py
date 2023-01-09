@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""
+.. module:: UserInterface
+	:platform: Unix
+	:synopsis: Python code for interface of the modalities
+	
+.. moduleauthor:: Awais Tahir <awaistahir29@gmail.com>
+
+This node implements the userinterface for controlling the robot in the environment with all three different modalities.
+"""
 
 import rospy
 import os
@@ -7,11 +16,11 @@ import signal
 
 # Declaring strings with some messages to display.
 
-title = """ 
+title =""" 
 User Interface """ + """
 Choose Among Three Modalities:"""
 
-menu_msg = """
+menu_msg ="""
 [1] """ + """Drive Automatically""" + """
 [2] """ + """Drive using Keyboard. """ + """
 [3] """ + """Drive using Keyboard Assisted by the Program.""" + """
@@ -24,6 +33,13 @@ menu_msg = """
 
 boolprint = False
 def switch():
+	"""
+	Switch function to switch between the modalities 
+	
+	Defining function switch(), this function will start the different
+	modalities depending on what the user decides to choose. The variable
+	boolprint is used to wait in the first modality the end of the task.
+	"""
 	global boolprint 
 	print(menu_msg)
 
@@ -89,6 +105,9 @@ def switch():
 # What we want now, is to call the functions created and printing the starting message.
 
 def main():
+	"""
+	This function initializes the UserInterface, put all modalities in idle state and waits for the user to insert the number of *modality* to control the robot according to the different modalities, by relying on the `rospy <http://wiki.ros.org/rospy>`_ module. The user message is passed to the ``user_interface``, which selet the modality to use to control the robot in the enviroment. 
+	"""
 	print(title)
 	while not rospy.is_shutdown():
 		switch()

@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>RT1_Assignement-03</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>final<sp/>assignment<sp/>of<sp/>the<sp/>Research<sp/>Track<sp/>1<sp/>class<sp/>regards<sp/>the<sp/>use<sp/>of<sp/>a<sp/>robot<sp/>simulator<sp/>in<sp/>ROS<sp/>(Robot<sp/>Operating<sp/>System)<sp/>and<sp/>the<sp/>programming<sp/>of<sp/>a<sp/>really<sp/>simple<sp/>UI<sp/>(User<sp/>Interface)<sp/>with<sp/>3<sp/>different<sp/>modalities.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Installing<sp/>and<sp/>running.</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>simulator<sp/>requires<sp/>ROS<sp/>(Robot<sp/>Operating<sp/>System),<sp/>which<sp/>is<sp/>a<sp/>set<sp/>of<sp/>software<sp/>libraries<sp/>and<sp/>tools<sp/>that<sp/>help<sp/>you<sp/>build<sp/>robot<sp/>applications.<sp/>The<sp/>simulator<sp/>perfectly<sp/>runs<sp/>on<sp/>the<sp/>[Noetic<sp/>Release<sp/>of<sp/>ROS](http://wiki.ros.org/noetic/Installation),<sp/>I<sp/>haven&apos;t<sp/>tried<sp/>the<sp/>[ROS<sp/>2<sp/>release](https://docs.ros.org)<sp/>yet,<sp/>so<sp/>let<sp/>me<sp/>know<sp/>if<sp/>it<sp/>does<sp/>actually<sp/>work.<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>simulator<sp/>requires<sp/>__slam_gmapping__<sp/>package,<sp/>so<sp/>please<sp/>install<sp/>it<sp/>before<sp/>using<sp/>the<sp/>package<sp/>here<sp/>presented!<sp/>[_Link<sp/>to<sp/>install<sp/>slam_gmapping<sp/>package._](http://wiki.ros.org/slam_gmapping)</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>simulator<sp/>requires<sp/>__Gazebo<sp/>and<sp/>Rviz__,<sp/>so<sp/>please<sp/>check<sp/>that<sp/>you<sp/>have<sp/>installed<sp/>those<sp/>two<sp/>programs!</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Anyway<sp/>you<sp/>can<sp/>check<sp/>every<sp/>release<sp/>of<sp/>ROS<sp/>in<sp/>this<sp/>[link](http://wiki.ros.org/ROS/Installation).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Another<sp/>tool<sp/>to<sp/>be<sp/>installed<sp/>is<sp/>the<sp/>xterm<sp/>interface.<sp/>We<sp/>use<sp/>it<sp/>to<sp/>make<sp/>the<sp/>user<sp/>experience<sp/>more<sp/>appreciatable,<sp/>so<sp/>run<sp/>this<sp/>command:</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>xterm</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">Once<sp/>you<sp/>have<sp/>installed<sp/>ROS<sp/>and<sp/>xterm,<sp/>you<sp/>should&apos;ve<sp/>even<sp/>created<sp/>a<sp/>workspace<sp/>where<sp/>you<sp/>can<sp/>build<sp/>up<sp/>your<sp/>packages.<sp/>So,<sp/>if<sp/>you<sp/>haven&apos;t<sp/>still<sp/>done<sp/>it,<sp/>download<sp/>the<sp/>package<sp/>on<sp/>GitHub<sp/>and<sp/>copy<sp/>it<sp/>in<sp/>your<sp/>`/src`<sp/>folder.<sp/>Then<sp/>you<sp/>should<sp/>run:</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>roscore<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>__run<sp/>ROS__<sp/>in<sp/>your<sp/>pc.</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>catkin_make</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>__build<sp/>the<sp/>workspace__.<sp/>Then,<sp/>in<sp/>order<sp/>to<sp/>refresh<sp/>the<sp/>package<sp/>list,<sp/>run:</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>rospack<sp/>profile</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">Once<sp/>you<sp/>have<sp/>installed<sp/>ROS<sp/>and<sp/>the<sp/>package,<sp/>__run<sp/>the<sp/>following<sp/>roslaunch__:</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>roslaunch<sp/>final_assignment<sp/>simulation.launch</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">Introduction</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__The<sp/>aim<sp/>of<sp/>the<sp/>project<sp/>is<sp/>to<sp/>create<sp/>a<sp/>simulation<sp/>of<sp/>a<sp/>robot<sp/>with<sp/>Gazebo<sp/>and<sp/>Rviz,<sp/>in<sp/>order<sp/>to<sp/>make<sp/>the<sp/>robot<sp/>exploring<sp/>the<sp/>map.<sp/>The<sp/>simulation<sp/>is<sp/>like<sp/>this:__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>professor<sp/>asked<sp/>us<sp/>to<sp/>build<sp/>the<sp/>package<sp/>by<sp/>using<sp/>__three<sp/>different<sp/>modalities__,<sp/>which<sp/>means<sp/>three<sp/>different<sp/>behaviours<sp/>of<sp/>the<sp/>robot.<sp/></highlight></codeline>
+<codeline><highlight class="normal">__We<sp/>had<sp/>to<sp/>develop<sp/>a<sp/>software<sp/>architecture<sp/>for<sp/>the<sp/>control<sp/>of<sp/>the<sp/>robot<sp/>in<sp/>the<sp/>environment.<sp/>The<sp/>software<sp/>will<sp/>rely<sp/>on<sp/>the<sp/>move_base<sp/>and<sp/>gmapping<sp/>packages<sp/>for<sp/>localizing<sp/>the<sp/>robot<sp/>and<sp/>plan<sp/>the<sp/>motion.__</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>architecture<sp/>should<sp/>be<sp/>able<sp/>to<sp/>get<sp/>the<sp/>user<sp/>request,<sp/>and<sp/>___let<sp/>the<sp/>robot<sp/>execute<sp/>one<sp/>of<sp/>the<sp/>following<sp/>behaviors___</highlight></codeline>
+<codeline><highlight class="normal">(depending<sp/>on<sp/>the<sp/>user’s<sp/>input):</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Autonomously<sp/>reach<sp/>a<sp/>x,y<sp/>coordinate<sp/>inserted<sp/>by<sp/>the<sp/>user.</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Let<sp/>the<sp/>user<sp/>drive<sp/>the<sp/>robot<sp/>with<sp/>the<sp/>keyboard.</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Let<sp/>the<sp/>user<sp/>drive<sp/>the<sp/>robot<sp/>assisting<sp/>them<sp/>to<sp/>avoid<sp/>collisions.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Logic<sp/>behind<sp/>the<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">To<sp/>satisfy<sp/>the<sp/>requests<sp/>I<sp/>decided<sp/>to<sp/>code<sp/>4<sp/>different<sp/>nodes<sp/>inside<sp/>the<sp/>package,<sp/>the<sp/>simulation<sp/>is<sp/>managed<sp/>by<sp/>the<sp/>simulation<sp/>which<sp/>was<sp/>provided<sp/>by<sp/>the<sp/>professor,<sp/>essentially<sp/>__you<sp/>have<sp/>to<sp/>install<sp/>the<sp/>slam_gmapping<sp/>package.__<sp/>Here&apos;s<sp/>the<sp/>idea<sp/>behind<sp/>the<sp/>communication<sp/>of<sp/>the<sp/>nodes:</highlight></codeline>
+<codeline><highlight class="normal">As<sp/>you<sp/>can<sp/>see<sp/>it&apos;s<sp/>an<sp/>easy<sp/>idea,<sp/>but<sp/>the<sp/>implementation<sp/>is<sp/>not<sp/>that<sp/>easy!<sp/>Anyway<sp/>I<sp/>will<sp/>go<sp/>through<sp/>everything.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;p<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;Block_Diagram.png&quot;<sp/>width=&quot;470&quot;<sp/>height=&quot;425&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/p&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Brief<sp/>Description_</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>user<sp/>through<sp/>the<sp/>console<sp/>of<sp/>the<sp/>UI<sp/>node<sp/>will<sp/>decide<sp/>the<sp/>modality<sp/>to<sp/>run,<sp/>after<sp/>that<sp/>the<sp/>robot<sp/>will<sp/>start<sp/>it&apos;s<sp/>modality<sp/>and<sp/>will<sp/>show<sp/>on<sp/>the<sp/>consoles<sp/>of<sp/>the<sp/>modalities<sp/>the<sp/>result<sp/>of<sp/>the<sp/>task,<sp/>wheter<sp/>it<sp/>was<sp/>okay<sp/>or<sp/>if<sp/>something<sp/>is<sp/>going<sp/>wrong.<sp/>Anyway,<sp/>the<sp/>most<sp/>important<sp/>part<sp/>is<sp/>to<sp/>understand<sp/>the<sp/>usage<sp/>of<sp/>the<sp/>modalities.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Nodes<sp/>and<sp/>their<sp/>logic</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Here<sp/>I<sp/>will<sp/>explain<sp/>each<sp/>node<sp/>code<sp/>and<sp/>tasks,<sp/>to<sp/>have<sp/>a<sp/>deeper<sp/>description<sp/>of<sp/>the<sp/>code,<sp/>check<sp/>the<sp/>comments<sp/>inside<sp/>of<sp/>it._</highlight></codeline>
+<codeline><highlight class="normal">__DISCLAIMER__:<sp/>here<sp/>I<sp/>will<sp/>explain<sp/>the<sp/>nodes<sp/>that<sp/>I<sp/>developed<sp/>by<sp/>myself,<sp/>so<sp/>please<sp/>for<sp/>more<sp/>infos<sp/>about<sp/>the<sp/>other<sp/>nodes<sp/>check<sp/>the<sp/>ROS<sp/>wiki.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>UI<sp/>Node<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>UI<sp/>node<sp/>is<sp/>a<sp/>super<sp/>easy<sp/>node<sp/>because<sp/>it<sp/>is<sp/>used<sp/>only<sp/>to<sp/>set<sp/>the<sp/>ROS<sp/>parameter<sp/>s<sp/>travelling<sp/>through<sp/>the<sp/>nodes.<sp/>The<sp/>most<sp/>important<sp/>one<sp/>is<sp/>the<sp/>integer<sp/>```active```<sp/>which<sp/>is<sp/>the<sp/>one<sp/>dedicated<sp/>to<sp/>the<sp/>modality<sp/>of<sp/>the<sp/>robot.<sp/>The<sp/>other<sp/>two<sp/>are<sp/>the<sp/>desired<sp/>positions<sp/>which<sp/>are<sp/>useful<sp/>only<sp/>for<sp/>the<sp/>first<sp/>modality.<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Essentially<sp/>this<sp/>is<sp/>the<sp/>pseudocoude<sp/>behind<sp/>my<sp/>idea:</highlight></codeline>
+<codeline><highlight class="normal">&lt;p<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;UserInterface.png&quot;<sp/>width=&quot;470&quot;<sp/>height=&quot;325&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/p&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Modality<sp/>1<sp/>Node<sp/></highlight></codeline>
+<codeline><highlight class="normal">In<sp/>the<sp/>modality<sp/>1<sp/>the<sp/>robot<sp/>has<sp/>to<sp/>reach<sp/>by<sp/>itself<sp/>a<sp/>goal<sp/>sent<sp/>by<sp/>the<sp/>user<sp/>in<sp/>the<sp/>UI<sp/>node.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>UI<sp/>node<sp/>is<sp/>the<sp/>most<sp/>interesting<sp/>one<sp/>because<sp/>is<sp/>based<sp/>on<sp/>ROSAction,<sp/>all<sp/>the<sp/>magic<sp/>takes<sp/>place<sp/>with<sp/>the<sp/>line:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>actionlib.SimpleActionClient(&apos;/move_base&apos;,<sp/>MoveBaseAction)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Thanks<sp/>to<sp/>this<sp/>[wiki.ros<sp/>page](http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Simple%20Action%20Client%20%28Python%29)<sp/>I<sp/>could<sp/>develop<sp/>a<sp/>good<sp/>action<sp/>with<sp/>its<sp/>functions<sp/>```done_cb()```,<sp/>```active_cb```,<sp/>```feedback_cb```.<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Then,<sp/>we<sp/>have<sp/>the<sp/>function<sp/>```ActionClient()```,<sp/>__the<sp/>function<sp/>starts<sp/>the<sp/>communication<sp/>with<sp/>wait_for_server().<sp/>The<sp/>action<sp/>client<sp/>and<sp/>server<sp/>communicate<sp/>over<sp/>a<sp/>set<sp/>of<sp/>topics,<sp/>described<sp/>in<sp/>the<sp/>actionlib<sp/>protocol.<sp/><sp/>The<sp/>action<sp/>name<sp/>describes<sp/>the<sp/>namespace<sp/>naining<sp/>these<sp/>topics,<sp/>and<sp/>the<sp/>action<sp/>specification<sp/>message<sp/>describes<sp/>what<sp/>messages<sp/>should<sp/>be<sp/>passed<sp/>along<sp/>these<sp/>topics.<sp/>__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>```main()```<sp/>function<sp/>takes<sp/>the<sp/>aim<sp/>of<sp/>the<sp/>modality.<sp/>First<sp/>of<sp/>all<sp/>it<sp/>loops,<sp/>then<sp/>we<sp/>update<sp/>the<sp/>variables<sp/>(containing<sp/>the<sp/>status<sp/>of<sp/>the<sp/>modality<sp/>and<sp/>the<sp/>position<sp/>informations)<sp/>and<sp/>the<sp/>code<sp/>understands<sp/>the<sp/>behaviour<sp/>of<sp/>the<sp/>robot<sp/>_status_<sp/>thanks<sp/>to<sp/>the<sp/>action.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>program<sp/>has<sp/>a<sp/>control<sp/>which<sp/>permits<sp/>to<sp/>put<sp/>the<sp/>robot<sp/>in<sp/>idle<sp/>state<sp/>in<sp/>the<sp/>case<sp/>the<sp/>robot<sp/>itself<sp/>cannot<sp/>reach<sp/>a<sp/>position<sp/>(for<sp/>example<sp/>out<sp/>of<sp/>the<sp/>maze).<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Here&apos;s<sp/>a<sp/>screenshot<sp/>of<sp/>the<sp/>xterm<sp/>console:</highlight></codeline>
+<codeline><highlight class="normal">&lt;p<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;Modality1.png&quot;<sp/>width=&quot;470&quot;<sp/>height=&quot;325&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/p&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Modality<sp/>2<sp/>Node<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__The<sp/>second<sp/>modality<sp/>is<sp/>the<sp/>one<sp/>dedicate<sp/>to<sp/>the<sp/>movement<sp/>of<sp/>the<sp/>robot<sp/>using<sp/>the<sp/>keyboard,<sp/>I<sp/>decided<sp/>to<sp/>simply<sp/>use<sp/>the<sp/>following<sp/>control<sp/>table:__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Direction<sp/><sp/><sp/>|<sp/><sp/><sp/><sp/><sp/><sp/>key<sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|----------|:-------------:|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Straight<sp/>|<sp/><sp/>&apos;i&apos;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Right<sp/>|<sp/><sp/><sp/><sp/>&apos;l&apos;<sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Left<sp/>|<sp/>&apos;j&apos;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Back<sp/>|<sp/>&apos;k&apos;<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>logic<sp/>of<sp/>the<sp/>code<sp/>is<sp/>really<sp/>simple,<sp/>because<sp/>I<sp/>decided<sp/>to<sp/>use<sp/>the<sp/>already<sp/>existing<sp/>code<sp/>of<sp/>the<sp/>package<sp/>___teleop_twist_keyboard___<sp/>the<sp/>code,<sp/>is<sp/>open<sp/>to<sp/>be<sp/>realaborated<sp/>on<sp/>their<sp/>github<sp/>repo,<sp/>here&apos;s<sp/>the<sp/>[link](http://wiki.ros.org/teleop_twist_keyboard),<sp/>as<sp/>you<sp/>can<sp/>see<sp/>it&apos;s<sp/>pretty<sp/>easy<sp/>and<sp/>what<sp/>I&apos;ve<sp/>done<sp/>is<sp/>really<sp/>simple.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Anyway<sp/>I<sp/>realaborated<sp/>the<sp/>code<sp/>by<sp/>using<sp/>the<sp/>paramater<sp/>```active```<sp/>because<sp/>we<sp/>want<sp/>this<sp/>modality<sp/>only<sp/>when<sp/>the<sp/>user<sp/>asks<sp/>for<sp/>it,<sp/>everything<sp/>else<sp/>is<sp/>the<sp/>same<sp/>as<sp/>in<sp/>the<sp/>package<sp/>teleop_twist_keyboard.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Here&apos;s<sp/>a<sp/>screenshot<sp/>of<sp/>the<sp/>xterm<sp/>console:</highlight></codeline>
+<codeline><highlight class="normal">&lt;p<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;Modality2.png&quot;<sp/>width=&quot;470&quot;<sp/>height=&quot;325&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/p&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Modality<sp/>3<sp/>Node</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__The<sp/>modality<sp/>3<sp/>has<sp/>the<sp/>same<sp/>aim<sp/>of<sp/>the<sp/>modality<sp/>2,<sp/>but<sp/>it<sp/>asks<sp/>for<sp/>an<sp/>assisting<sp/>stop<sp/>when<sp/>the<sp/>robot<sp/>is<sp/>too<sp/>close<sp/>to<sp/>a<sp/>wall.__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">To<sp/>develop<sp/>this<sp/>modality<sp/>I<sp/>decided<sp/>to<sp/>reuse<sp/>the<sp/>second<sp/>modality<sp/>but<sp/>modifing<sp/>the<sp/>most<sp/>important<sp/>part,<sp/>the<sp/>assignment<sp/>of<sp/>the<sp/>key<sp/>to<sp/>the<sp/>movement<sp/>of<sp/>the<sp/>robot.<sp/>To<sp/>make<sp/>the<sp/>robot<sp/>move<sp/>the<sp/>code<sp/>uses<sp/>the<sp/>dictionary<sp/>which<sp/>is<sp/>a<sp/>code<sp/>structure<sp/>of<sp/>python.<sp/>Here<sp/>we<sp/>have:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">moveBindings<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;i&apos;:(1,0,0,0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;j&apos;:(0,0,0,1),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;l&apos;:(0,0,0,-1),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;k&apos;:(-1,0,0,0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Then<sp/>we<sp/>decide<sp/>to<sp/>get<sp/>the<sp/>inputs<sp/>from<sp/>the<sp/>keyboard<sp/>but<sp/>everything<sp/>is<sp/>controlled<sp/>by<sp/>a<sp/>new<sp/>function,<sp/>called<sp/>```python<sp/>pop_dict()```<sp/>which<sp/>permits<sp/>to<sp/>get<sp/>rid<sp/>of<sp/>the<sp/>commands<sp/>that<sp/>we<sp/>shouldn&apos;t<sp/>have<sp/>when<sp/>we&apos;re<sp/>close<sp/>to<sp/>a<sp/>wall.<sp/>The<sp/>function<sp/>is<sp/>the<sp/>following:<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">def<sp/>pop_it(dictionary):</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>global<sp/>ok_left</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>global<sp/>ok_right</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>global<sp/>ok_straight</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">As<sp/>you<sp/>can<sp/>see,<sp/>we&apos;re<sp/>passing<sp/>a<sp/>dictionary<sp/>to<sp/>the<sp/>function.<sp/>The<sp/>idea<sp/>is<sp/>that<sp/>we<sp/>will<sp/>pass<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>original<sp/>```moveBindings```<sp/>dictionary,<sp/>because<sp/>we<sp/>don&apos;t<sp/>want<sp/>the<sp/>original<sp/>informations<sp/>to<sp/>be<sp/>lost<sp/>when<sp/>we&apos;re<sp/>away<sp/>from<sp/>a<sp/>wall!<sp/>This<sp/>is<sp/>only<sp/>the<sp/>real<sp/>difference<sp/>from<sp/>the<sp/>other<sp/>modality.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Here&apos;s<sp/>a<sp/>screenshot<sp/>of<sp/>the<sp/>xterm<sp/>console:</highlight></codeline>
+<codeline><highlight class="normal">&lt;p<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;Modality3.png&quot;<sp/>width=&quot;470&quot;<sp/>height=&quot;325&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/p&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Conclusion<sp/>and<sp/>possible<sp/>improvements</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">I&apos;m<sp/>really<sp/>satisfied<sp/>of<sp/>the<sp/>work,<sp/>it<sp/>was<sp/>pretty<sp/>tough<sp/>especially<sp/>by<sp/>finding<sp/>all<sp/>the<sp/>informations<sp/>to<sp/>create<sp/>a<sp/>good<sp/>communication<sp/>and<sp/>developing<sp/>each<sp/>node.<sp/>Thank&apos;s<sp/>to<sp/>the<sp/>portability<sp/>of<sp/>ROS<sp/>and<sp/>the<sp/>community<sp/>I<sp/>finalized<sp/>the<sp/>job.<sp/>To<sp/>conclude<sp/>the<sp/>communication<sp/>of<sp/>the<sp/>nodes<sp/>I<sp/>will<sp/>show<sp/>yo<sp/>with<sp/>the<sp/>node</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">rosrun<sp/>rqt_graph<sp/>rqt_graph</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">the<sp/>relationship<sp/>between<sp/>all<sp/>the<sp/>nodes:</highlight></codeline>
+<codeline><highlight class="normal">&lt;p<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;rosgraph.png&quot;<sp/>width=&quot;970&quot;<sp/>height=&quot;425&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/p&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__The<sp/>possible<sp/>improvements<sp/>that<sp/>can<sp/>be<sp/>done<sp/>are:__</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>We<sp/>can<sp/>manage<sp/>better<sp/>the<sp/>User<sp/>Interface,<sp/>it<sp/>is<sp/>not<sp/>so<sp/>easy<sp/>and<sp/>it&apos;s<sp/>full<sp/>of<sp/>various<sp/>bugs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>modalities<sp/>do<sp/>only<sp/>their<sp/>jobs,<sp/>but<sp/>they<sp/>can<sp/>be<sp/>completed<sp/>with<sp/>a<sp/>lot<sp/>of<sp/>other<sp/>fun<sp/>things,<sp/>like<sp/>managing<sp/>the<sp/>speed<sp/>and<sp/>othe<sp/>characteristics<sp/>of<sp/>the<sp/>robot.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>As<sp/>you<sp/>can<sp/>see,<sp/>the<sp/>input<sp/>on<sp/>the<sp/>modality<sp/>3<sp/>is<sp/>not<sp/>really<sp/>taken<sp/>perfectly,<sp/>it<sp/>takes<sp/>in<sp/>the<sp/>standard<sp/>input<sp/>the<sp/>input<sp/>keys<sp/>and<sp/>prints<sp/>them.<sp/>I<sp/>tried<sp/>to<sp/>fix<sp/>this<sp/>problem<sp/>but<sp/>I<sp/>couldn&apos;t<sp/>fix<sp/>it.<sp/>Anyway<sp/>I<sp/>know<sp/>for<sp/>sure<sp/>that<sp/>if<sp/>I<sp/>will<sp/>take<sp/>some<sp/>time<sp/>over<sp/>I<sp/>can<sp/>finally<sp/>fix<sp/>it.</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

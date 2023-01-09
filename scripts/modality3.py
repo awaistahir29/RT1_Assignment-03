@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""
+.. module:: Modality3
+	:platform: Unix
+	:synopsis: Python code for interface of the modalities
+	
+.. moduleauthor:: Awais Tahir <awaistahir29@gmail.com>
+
+This node implements the third modality for controlling the robot in the environment.
+"""
 
 from __future__ import print_function
 import threading

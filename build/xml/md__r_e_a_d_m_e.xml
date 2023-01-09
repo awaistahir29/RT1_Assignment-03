@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="md__r_e_a_d_m_e" kind="page">
+    <compoundname>md_README</compoundname>
+    <title>RT1_Assignement-03</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The final assignment of the Research Track 1 class regards the use of a robot simulator in ROS (Robot Operating System) and the programming of a really simple UI (User Interface) with 3 different modalities.</para>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md1">
+<title>Installing and running.</title>
+<para>The simulator requires ROS (Robot Operating System), which is a set of software libraries and tools that help you build robot applications. The simulator perfectly runs on the <ulink url="http://wiki.ros.org/noetic/Installation">Noetic Release of ROS</ulink>, I haven&apos;t tried the <ulink url="https://docs.ros.org">ROS 2 release</ulink> yet, so let me know if it does actually work.</para>
+<para>The simulator requires <bold>slam_gmapping</bold> package, so please install it before using the package here presented! <ulink url="http://wiki.ros.org/slam_gmapping"><emphasis>Link to install slam_gmapping package.</emphasis></ulink></para>
+<para>The simulator requires <bold>Gazebo and Rviz</bold>, so please check that you have installed those two programs!</para>
+<para>Anyway you can check every release of ROS in this <ulink url="http://wiki.ros.org/ROS/Installation">link</ulink>.</para>
+<para>Another tool to be installed is the xterm interface. We use it to make the user experience more appreciatable, so run this command: <programlisting filename=".bash"><codeline><highlight class="normal">$<sp/>sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>xterm</highlight></codeline>
+</programlisting></para>
+<para>Once you have installed ROS and xterm, you should&apos;ve even created a workspace where you can build up your packages. So, if you haven&apos;t still done it, download the package on GitHub and copy it in your <computeroutput>/src</computeroutput> folder. Then you should run: <programlisting filename=".bash"><codeline><highlight class="normal">$<sp/>roscore<sp/>&amp;</highlight></codeline>
+</programlisting></para>
+<para>to <bold>run ROS</bold> in your pc. <programlisting filename=".bash"><codeline><highlight class="normal">$<sp/>catkin_make</highlight></codeline>
+</programlisting></para>
+<para>to <bold>build the workspace</bold>. Then, in order to refresh the package list, run: <programlisting filename=".bash"><codeline><highlight class="normal">$<sp/>rospack<sp/>profile</highlight></codeline>
+</programlisting></para>
+<para>Once you have installed ROS and the package, <bold>run the following roslaunch</bold>: <programlisting filename=".bash"><codeline><highlight class="normal">$<sp/>roslaunch<sp/>final_assignment<sp/>simulation.launch</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md2">
+<title>Introduction</title>
+<para><bold>The aim of the project is to create a simulation of a robot with Gazebo and Rviz, in order to make the robot exploring the map. The simulation is like this:</bold></para>
+<para>The professor asked us to build the package by using <bold>three different modalities</bold>, which means three different behaviours of the robot. <bold>We had to develop a software architecture for the control of the robot in the environment. The software will rely on the move_base and gmapping packages for localizing the robot and plan the motion.</bold> The architecture should be able to get the user request, and ___let the robot execute one of the following behaviors___ (depending on the user’s input):<orderedlist>
+<listitem><para>Autonomously reach a x,y coordinate inserted by the user.</para>
+</listitem><listitem><para>Let the user drive the robot with the keyboard.</para>
+</listitem><listitem><para>Let the user drive the robot assisting them to avoid collisions.</para>
+</listitem></orderedlist>
+</para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md3">
+<title>Logic behind the code</title>
+<para>To satisfy the requests I decided to code 4 different nodes inside the package, the simulation is managed by the simulation which was provided by the professor, essentially <bold>you have to install the slam_gmapping package.</bold> Here&apos;s the idea behind the communication of the nodes: As you can see it&apos;s an easy idea, but the implementation is not that easy! Anyway I will go through everything.</para>
+<para><image type="html" name="Block_Diagram.png" inline="yes"></image>
+ </para>
+<para><emphasis>Brief Description</emphasis></para>
+<para>The user through the console of the UI node will decide the modality to run, after that the robot will start it&apos;s modality and will show on the consoles of the modalities the result of the task, wheter it was okay or if something is going wrong. Anyway, the most important part is to understand the usage of the modalities.</para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md4">
+<title>Nodes and their logic</title>
+<para><emphasis>Here I will explain each node code and tasks, to have a deeper description of the code, check the comments inside of it.</emphasis> <bold>DISCLAIMER</bold>: here I will explain the nodes that I developed by myself, so please for more infos about the other nodes check the ROS wiki.</para>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md5">
+<title>UI Node</title>
+<para>The UI node is a super easy node because it is used only to set the ROS parameter s travelling through the nodes. The most important one is the integer <computeroutput>active</computeroutput> which is the one dedicated to the modality of the robot. The other two are the desired positions which are useful only for the first modality.</para>
+<para>Essentially this is the pseudocoude behind my idea: </para>
+<para><image type="html" name="UserInterface.png" inline="yes"></image>
+ </para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md6">
+<title>Modality 1 Node</title>
+<para>In the modality 1 the robot has to reach by itself a goal sent by the user in the UI node.</para>
+<para>The UI node is the most interesting one because is based on ROSAction, all the magic takes place with the line:</para>
+<para><programlisting filename=".python"><codeline><highlight class="normal">client<sp/>=<sp/>actionlib.SimpleActionClient(&apos;/move_base&apos;,<sp/>MoveBaseAction)</highlight></codeline>
+</programlisting></para>
+<para>Thanks to this <ulink url="http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Simple%20Action%20Client%20%28Python%29">wiki.ros page</ulink> I could develop a good action with its functions <computeroutput>done_cb()</computeroutput>, <computeroutput>active_cb</computeroutput>, <computeroutput>feedback_cb</computeroutput>.</para>
+<para>Then, we have the function <computeroutput>ActionClient()</computeroutput>, __the function starts the communication with wait_for_server(). The action client and server communicate over a set of topics, described in the actionlib protocol. The action name describes the namespace naining these topics, and the action specification message describes what messages should be passed along these topics. __</para>
+<para>The <computeroutput>main()</computeroutput> function takes the aim of the modality. First of all it loops, then we update the variables (containing the status of the modality and the position informations) and the code understands the behaviour of the robot <emphasis>status</emphasis> thanks to the action.</para>
+<para>The program has a control which permits to put the robot in idle state in the case the robot itself cannot reach a position (for example out of the maze).</para>
+<para>Here&apos;s a screenshot of the xterm console: </para>
+<para><image type="html" name="Modality1.png" inline="yes"></image>
+ </para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md7">
+<title>Modality 2 Node</title>
+<para><bold>The second modality is the one dedicate to the movement of the robot using the keyboard, I decided to simply use the following control table:</bold></para>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para>Direction </para>
+</entry><entry thead="yes"><para>key  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Straight </para>
+</entry><entry thead="no"><para>&apos;i&apos;  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Right </para>
+</entry><entry thead="no"><para>&apos;l&apos;  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Left </para>
+</entry><entry thead="no"><para>&apos;j&apos;  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Back </para>
+</entry><entry thead="no"><para>&apos;k&apos;  </para>
+</entry></row>
+</table>
+</para>
+<para>The logic of the code is really simple, because I decided to use the already existing code of the package ___teleop_twist_keyboard___ the code, is open to be realaborated on their github repo, here&apos;s the <ulink url="http://wiki.ros.org/teleop_twist_keyboard">link</ulink>, as you can see it&apos;s pretty easy and what I&apos;ve done is really simple.</para>
+<para>Anyway I realaborated the code by using the paramater <computeroutput>active</computeroutput> because we want this modality only when the user asks for it, everything else is the same as in the package teleop_twist_keyboard.</para>
+<para>Here&apos;s a screenshot of the xterm console: </para>
+<para><image type="html" name="Modality2.png" inline="yes"></image>
+ </para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md8">
+<title>Modality 3 Node</title>
+<para><bold>The modality 3 has the same aim of the modality 2, but it asks for an assisting stop when the robot is too close to a wall.</bold></para>
+<para>To develop this modality I decided to reuse the second modality but modifing the most important part, the assignment of the key to the movement of the robot. To make the robot move the code uses the dictionary which is a code structure of python. Here we have:</para>
+<para><programlisting filename=".python"><codeline><highlight class="normal">moveBindings<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;i&apos;:(1,0,0,0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;j&apos;:(0,0,0,1),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;l&apos;:(0,0,0,-1),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;k&apos;:(-1,0,0,0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting></para>
+<para>Then we decide to get the inputs from the keyboard but everything is controlled by a new function, called <computeroutput>python pop_dict()</computeroutput> which permits to get rid of the commands that we shouldn&apos;t have when we&apos;re close to a wall. The function is the following:</para>
+<para><programlisting filename=".python"><codeline><highlight class="normal">def<sp/>pop_it(dictionary):</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>global<sp/>ok_left</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>global<sp/>ok_right</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>global<sp/>ok_straight</highlight></codeline>
+</programlisting></para>
+<para>As you can see, we&apos;re passing a dictionary to the function. The idea is that we will pass a copy of the original <computeroutput>moveBindings</computeroutput> dictionary, because we don&apos;t want the original informations to be lost when we&apos;re away from a wall! This is only the real difference from the other modality.</para>
+<para>Here&apos;s a screenshot of the xterm console: </para>
+<para><image type="html" name="Modality3.png" inline="yes"></image>
+ </para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md9">
+<title>Conclusion and possible improvements</title>
+<para>I&apos;m really satisfied of the work, it was pretty tough especially by finding all the informations to create a good communication and developing each node. Thank&apos;s to the portability of ROS and the community I finalized the job. To conclude the communication of the nodes I will show yo with the node <programlisting filename=".bash"><codeline><highlight class="normal">rosrun<sp/>rqt_graph<sp/>rqt_graph</highlight></codeline>
+</programlisting></para>
+<para>the relationship between all the nodes: </para>
+<para><image type="html" name="rosgraph.png" inline="yes"></image>
+ </para>
+<para><bold>The possible improvements that can be done are:</bold><itemizedlist>
+<listitem><para>We can manage better the User Interface, it is not so easy and it&apos;s full of various bugs.</para>
+</listitem><listitem><para>The modalities do only their jobs, but they can be completed with a lot of other fun things, like managing the speed and othe characteristics of the robot.</para>
+</listitem><listitem><para>As you can see, the input on the modality 3 is not really taken perfectly, it takes in the standard input the input keys and prints them. I tried to fix this problem but I couldn&apos;t fix it. Anyway I know for sure that if I will take some time over I can finally fix it. </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

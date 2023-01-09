@@ -1,4 +1,13 @@
 #! /usr/bin/env python3
+"""
+.. module:: Modality1
+	:platform: Unix
+	:synopsis: Python code for interface of the modalities
+	
+.. moduleauthor:: Awais Tahir <awaistahir29@gmail.com>
+
+This node implements the first modality for controlling the robot in the environment.
+"""
 
 import rospy
 import actionlib
