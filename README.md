@@ -1,5 +1,5 @@
 # RT1_Assignement-03
-The final assignment of the Research Track 1 class regards the use of a robot simulator in ROS (Robot Operating System) and the programming of a really simple UI (User Interface) with 3 different modalities.
+The final assignment of the Research Track 1 class regards the use of a robot simulator in ROS (Robot Operating System) and the programming of a really simple UI (User Interface) with 3 different modalities. Read the [Documentation](https://awaistahir29.github.io/RT1_Assignment-03/) for details.
 
 Installing and running.
 ----------------------
