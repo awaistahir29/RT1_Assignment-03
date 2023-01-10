@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="e" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scripts.UI &mdash; final_assignment 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> final_assignment
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">final_assignment</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>scripts.UI</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for scripts.UI</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: UserInterface</span>
+<span class="sd">	:platform: Unix</span>
+<span class="sd">	:synopsis: Python code for interface of the modalities</span>
+<span class="sd">	</span>
+<span class="sd">.. moduleauthor:: Awais Tahir &lt;awaistahir29@gmail.com&gt;</span>
+
+<span class="sd">This node implements the userinterface for controlling the robot in the environment with all three different modalities.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">signal</span>
+
+
+<span class="c1"># Declaring strings with some messages to display.</span>
+
+<span class="n">title</span> <span class="o">=</span><span class="s2">&quot;&quot;&quot; </span>
+<span class="s2">User Interface &quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Choose Among Three Modalities:&quot;&quot;&quot;</span>
+
+<span class="n">menu_msg</span> <span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[1] &quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;Drive Automatically&quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[2] &quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;Drive using Keyboard. &quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[3] &quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;Drive using Keyboard Assisted by the Program.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[4] &quot;&quot;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;Quit Simulation.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Defining function switch(), this function will start the different</span>
+<span class="c1"># modalities depending on what the user decides to choose. The variable</span>
+<span class="c1"># boolprint is used to wait in the first modality the end of the task.</span>
+
+<span class="n">boolprint</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="viewcode-block" id="switch"><a class="viewcode-back" href="../../index.html#scripts.UI.switch">[docs]</a><span class="k">def</span> <span class="nf">switch</span><span class="p">():</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Switch function to switch between the modalities </span>
+<span class="sd">	</span>
+<span class="sd">	Defining function switch(), this function will start the different</span>
+<span class="sd">	modalities depending on what the user decides to choose. The variable</span>
+<span class="sd">	boolprint is used to wait in the first modality the end of the task.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">global</span> <span class="n">boolprint</span> 
+	<span class="nb">print</span><span class="p">(</span><span class="n">menu_msg</span><span class="p">)</span>
+
+	<span class="k">if</span> <span class="n">boolprint</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press [0] for canceling the target.&quot;</span><span class="p">)</span>
+		<span class="n">boolprint</span> <span class="o">=</span> <span class="kc">False</span>
+	<span class="n">command</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Instert a command </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+	<span class="sd">&quot;&quot;&quot;Command: the variable to assign the modality.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="c1"># Setting all the modalities idle.</span>
+	
+	<span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+		<span class="n">rospy</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Idle.&quot;</span><span class="p">)</span>
+		<span class="n">active_</span><span class="o">=</span><span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s2">&quot;/active&quot;</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">active_</span><span class="p">)</span>
+
+	<span class="c1"># Starting the first modality, then asking the user which position he wants to reach.</span>
+	<span class="c1"># Once the position is written we set the position on the parameters, these will be</span>
+	<span class="c1"># read by the first modality.</span>
+
+	<span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+
+		<span class="n">rospy</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modality 1 is active.&quot;</span><span class="p">)</span>
+		<span class="n">active_</span><span class="o">=</span><span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s2">&quot;/active&quot;</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Where do you want the robot to go?&quot;</span><span class="p">)</span>
+		<span class="n">des_x_input</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insert the desired x position: &quot;</span><span class="p">))</span>
+		<span class="n">des_y_input</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insert the desired y position: &quot;</span> <span class="p">))</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Now we try to reach the position x = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">des_x_input</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; , y = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">des_y_input</span><span class="p">))</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The robot is moving towards your desired target!&quot;</span> <span class="p">)</span>		
+		<span class="n">rospy</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">&#39;des_pos_x&#39;</span><span class="p">,</span> <span class="n">des_x_input</span><span class="p">)</span>
+		<span class="n">rospy</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">&#39;des_pos_y&#39;</span><span class="p">,</span> <span class="n">des_y_input</span><span class="p">)</span>
+		<span class="n">rospy</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="n">boolprint</span><span class="o">=</span><span class="kc">True</span>
+
+	<span class="c1"># Starting the second modality.</span>
+
+	<span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+		<span class="n">rospy</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modality 2 is active.&quot;</span> <span class="p">)</span>
+		<span class="n">active_</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s2">&quot;/active&quot;</span><span class="p">)</span>
+	
+	<span class="c1"># Starting the third modality.</span>
+
+	<span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+		<span class="n">rospy</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modality 3 is active.&quot;</span><span class="p">)</span>
+		<span class="n">active_</span><span class="o">=</span><span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s2">&quot;/active&quot;</span><span class="p">)</span>
+
+	<span class="c1"># If we want to quit the program, we press 4.</span>
+
+	<span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exiting...&quot;</span><span class="p">)</span>
+		<span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">(),</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGKILL</span><span class="p">)</span>
+	
+	<span class="c1"># If the user presses anything else, we want to quit the program.</span>
+
+	<span class="k">else</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong key!&quot;</span><span class="p">)</span></div>
+
+<span class="c1"># What we want now, is to call the functions created and printing the starting message.</span>
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../index.html#scripts.UI.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	This function initializes the UserInterface, put all modalities in idle state and waits for the user to insert the number of *modality* to control the robot according to the different modalities, by relying on the `rospy &lt;http://wiki.ros.org/rospy&gt;`_ module. The user message is passed to the ``user_interface``, which selet the modality to use to control the robot in the enviroment. </span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+	<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+		<span class="n">switch</span><span class="p">()</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Awais Tahir.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
