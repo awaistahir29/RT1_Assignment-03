@@ -6,7 +6,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>The final assignment of the Research Track 1 class regards the use of a robot simulator in ROS (Robot Operating System) and the programming of a really simple UI (User Interface) with 3 different modalities.</para>
+<para>The final assignment of the Research Track 1 class regards the use of a robot simulator in ROS (Robot Operating System) and the programming of a really simple UI (User Interface) with 3 different modalities. Read the <ulink url="https://awaistahir29.github.io/RT1_Assignment-03/">Documentation</ulink> for details.</para>
 <sect1 id="md__r_e_a_d_m_e_1autotoc_md1">
 <title>Installing and running.</title>
 <para>The simulator requires ROS (Robot Operating System), which is a set of software libraries and tools that help you build robot applications. The simulator perfectly runs on the <ulink url="http://wiki.ros.org/noetic/Installation">Noetic Release of ROS</ulink>, I haven&apos;t tried the <ulink url="https://docs.ros.org">ROS 2 release</ulink> yet, so let me know if it does actually work.</para>
